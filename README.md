@@ -83,6 +83,7 @@ Our solution aims to deliver a comprehensive platform offering:
 - **JWT token-based authentication** for secure access
 - **Docker-containerized deployment** on **GCP VM**
 
+---
 # Architecture Diagram
 ![image](https://github.com/user-attachments/assets/1dbf9f88-b5b9-4186-a3f6-ef7b1591d211)
 
@@ -128,19 +129,6 @@ graph TD
         H --> T[Analytics Option]
         T --> U[Analytics for the Applied Jobs from Snowflake Results DB]
     end
-
-
-
-The project leverages a multi-layered architecture with the following technologies:
-- **Backend**: FastAPI for handling APIs and integrating with LLMs.
-- **Frontend**: Streamlit for user interaction and visualizations.
-- **Database**: Snowflake for storing user and job data.
-- **Storage**: AWS S3 for managing uploaded files (resumes and cover letters).
-- **Data Scraping**: Google SERP API for fetching job listings.
-- **Analytics**: Descriptive and visual insights using integrated modules.
-- **Deployment**: Dockerized application with CI/CD via GitHub Actions and hosting on GCloud VM.
-
-![Architecture Diagram](diagrams/intelligent_job_search_assistant_architecture.png)  
 
 ---
 ## Application Screenshots
