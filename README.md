@@ -87,19 +87,17 @@ Our solution aims to deliver a comprehensive platform offering:
 # Architecture Diagram
 ![image](https://github.com/user-attachments/assets/1dbf9f88-b5b9-4186-a3f6-ef7b1591d211)
 
+---
 ## Application Workflow Diagram
-Below is a representation of the data flow and application workflow within the system:
-
 ```mermaid
 graph TD
     %% Data Flow %%
     subgraph Data Flow
         A[Google Jobs Scraping via Google SERP API] --> B[Preprocessing and Transformations]
-        B --> C[Airflow]
-        C --> Cd[Load Data into Snowflake Database]
+        B --> C[Airflow] --> Cd[Load Data into Snowflake Database]
     end
 
-    %% Application Flow %%
+    %% Application Flow and Back%%
     subgraph Application Flow
         Login_Signup --> D[Login or Signup]
         D -->|Signup| E[Save User Details to Snowflake Users Database, Resume and Cover Letter to S3]
@@ -118,17 +116,20 @@ graph TD
 
         H --> OO[View Saved Jobs from Snowflake Saved Jobs DB]
         OO --> FF[Set Job Status as Applied]
-        OO --> GG[Check Relevance with Profile and Save Feedback and Job Details in Snowflake Results DB]
+        OO --> GG[Check Relevance with Profile and save the feedback and Job Details in Snowflake Results DB]
 
         L --> P[Check Selected Job Relevance with Profile]
-        P --> PQ[Sends Job Description Along with Resume and Cover Letter to OpenAI for Structured Feedback]
+        P --> PQ[Sends Job description Along with Resume and Cover Letter to OpenAI for Structured Feedaback]
         PQ --> Q[Save Feedback and Job Details in Snowflake Results DB]
 
         R --> S[Save Status in Snowflake Results DB]
 
         H --> T[Analytics Option]
-        T --> U[Analytics for the Applied Jobs from Snowflake Results DB]
+        T --> U[Analytics for the applied jobs from Snowflake Results DB]
     end
+```
+
+---
 
 
 
