@@ -16,25 +16,6 @@
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 
 ---
-
-WE ATTEST THAT WE HAVEN’T USED ANY OTHER STUDENTS’ WORK IN OUR
-PROJECT AND ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK
-Contribution:
-- Viswanath Raju Indukuri: 33.3%
-- Snehal Shivaji Molavade: 33.3%
-- Sai Vivekanand Reddy Vangala: 33.3%
-
----
-
-## Links
-1. **Application URL**: http://viswanath.me:8501/
-2. **Backend Service Link**: http://viswanath.me:8000/docs
-3. **Final Codelabs Report**: [View Report](https://codelabs-preview.appspot.com/?file_id=1M37nENvgtKTGsCYfi8TnebYeSrfNwSMdzXxU_mIjOBg#0)
-4. **Application Demo**: [Watch Video](https://drive.google.com/drive/folders/1jAFPlM8YFPhveZ6IiSmsVj5E1-U6Bg3H?usp=sharing)
-5. **Proposal Codelabs Report**: [View Report](https://codelabs-preview.appspot.com/?file_id=1JGeUAieHgwrS8Kxsetu1_HHAeJsj8REv8EMC-kxBqW0#0)
-6. **Proposal Video**: [Watch Video](https://drive.google.com/drive/folders/1DHzRlApDj-2Uo6RVT5viC4lYyjXmdB3s?usp=sharing)
-
----
 # Introduction
 
 Navigating the competitive job market can be overwhelming, with candidates often struggling to identify relevant opportunities and optimize their application materials for specific roles. Traditional job boards provide limited options, while tailoring resumes and cover letters for individual job descriptions is time-consuming and subjective. This project introduces an intelligent system that expands job searches across multiple sources and provides actionable insights to improve profile optimization, enhancing job-seeking efficiency and success rates.
@@ -59,25 +40,55 @@ The **Intelligent Job Search Assistant** provides a comprehensive suite of featu
 6. **Analytics**: Offers insights into the user's job search process through descriptive statistics and visualizations.
 
 ---
+# Problem Statement 
 
-# Architecture
+## Problem Statement
 
-The project leverages a multi-layered architecture with the following technologies:
-- **Backend**: FastAPI for handling APIs and integrating with LLMs.
-- **Frontend**: Streamlit for user interaction and visualizations.
-- **Database**: Snowflake for storing user and job data.
-- **Storage**: AWS S3 for managing uploaded files (resumes and cover letters).
-- **Data Scraping**: Google SERP API for fetching job listings.
-- **Analytics**: Descriptive and visual insights using integrated modules.
-- **Deployment**: Dockerized application with CI/CD via GitHub Actions and hosting on GCloud VM.
+Job seekers currently face several critical challenges in their job search process:
 
-![Architecture Diagram](diagrams/intelligent_job_search_assistant_architecture.png)  
+### Limited Job Discovery
+- Restricted access to opportunities across multiple platforms
+- Difficulty in finding relevant positions matching their skills
+- Time-consuming manual searches across different job boards
+
+### Application Material Optimization
+- Lack of real-time feedback on resume and cover letter effectiveness
+- Challenge in tailoring documents to specific job requirements
+- No standardized way to measure application material relevance
+
+### Application Management
+- Loss of job details after listings are removed from original sources
+- Inefficient tracking of multiple job applications
+- No centralized system for managing application statuses
+
+### Feedback and Analytics Gap
+- Absence of data-driven insights into application performance
+- No visibility into success patterns and areas for improvement
+- Limited understanding of job market trends
 
 ---
 
-# Data and Application Workflow
+## Desired Outcome
 
-```mermaid
+Our solution aims to deliver a comprehensive platform offering:
+
+### Core Features
+- Aggregated job listings from multiple sources via **Google SERP API integration**
+- AI-powered analysis of resumes and cover letters using **OpenAI** and **LangChain**
+- Natural language job search capabilities through **SQL Agent**
+- Secure document storage in **AWS S3** and structured data in **Snowflake**
+- Real-time application tracking and status management
+
+### Advanced Capabilities
+- Personalized feedback system for application optimization
+- Analytics dashboard for tracking application metrics
+- **JWT token-based authentication** for secure access
+- **Docker-containerized deployment** on **GCP VM**
+
+# Architecture Diagram
+![image](https://github.com/user-attachments/assets/1dbf9f88-b5b9-4186-a3f6-ef7b1591d211)
+
+# Application Workflow
 graph TD
     %% Data Flow %%
     subgraph Data Flow
@@ -115,82 +126,109 @@ graph TD
         H --> T[Analytics Option]
         T --> U[Analytics for the applied jobs from Snowflake Results DB]
     end
-```
+
+
+
+The project leverages a multi-layered architecture with the following technologies:
+- **Backend**: FastAPI for handling APIs and integrating with LLMs.
+- **Frontend**: Streamlit for user interaction and visualizations.
+- **Database**: Snowflake for storing user and job data.
+- **Storage**: AWS S3 for managing uploaded files (resumes and cover letters).
+- **Data Scraping**: Google SERP API for fetching job listings.
+- **Analytics**: Descriptive and visual insights using integrated modules.
+- **Deployment**: Dockerized application with CI/CD via GitHub Actions and hosting on GCloud VM.
+
+![Architecture Diagram](diagrams/intelligent_job_search_assistant_architecture.png)  
+
+---
+## Application Screenshots
+
+### Homepage / Landing Page
+The landing page introduces users to the **Intelligent Job Search Assistant** platform, highlighting key features:
+- Natural language job search
+- AI-powered profile matching
+- Application tracking
+![image](https://github.com/user-attachments/assets/19f486c3-8b90-49d3-86b7-33934a6cf9b7)
+
+Users can:
+- **Sign in** or **Create a New Account**
+- Access the four main sections after authentication:
+  1. **Intelligent Job Search**: Natural language job search interface
+  2. **Saved Jobs**
+  3. **Application Materials**
+  4. **User Analytics**
+- **Job Listings Analytics**
 
 ---
 
-# Methodology
+### Login / Signup Page
+A dual-purpose authentication page where:
+- Existing users can log in using their credentials.
+- New users can switch to the signup form to create an account.
+![image](https://github.com/user-attachments/assets/e56d28ed-193f-4cb6-a9ec-1e5509cd946a)
 
-### Data Sources
-1. **Job Listings**:
-   - **Source**: Google SERP API for aggregating jobs from company websites, job boards, and niche platforms.
-   - **Data Collected**: Job title, company name, location, job description, posted date, and application links (stored in the `joblistings` table in Snowflake).
-
-2. **User-Provided Data**:
-   - **Resumes and Cover Letters**: Stored in AWS S3 in PDF format.
-   - **User Details**: Stored in Snowflake (`user` table), including name, email, and interaction data.
-
-3. **Application Management Data**:
-   - **User Interactions**: Data on saved and applied jobs is stored in Snowflake.
-
-### Technologies & Tools
-- **Data Collection and API Gateway**:
-  - **FastAPI**: Handles application requests, user interactions, and integration with LangGraph, Snowflake, and S3.
-- **Data Storage**:
-  - **Snowflake**: For structured job and user data storage.
-  - **AWS S3**: For storing user-uploaded files (resumes and cover letters).
-- **Data Processing and Analysis**:
-  - **OpenAI & LangChain**: Evaluates the relevance of resumes and cover letters to job descriptions, providing feedback and scores.
-  - **LangGraph**: Facilitates SQL-based querying of Snowflake data using natural language.
-- **Orchestration**:
-  - **Airflow**: Manages data ingestion, processing, and storage tasks.
-- **Frontend and Visualization**:
-  - **Streamlit**: Provides an interactive user interface for job search, application management, and analytics visualization.
-- **Infrastructure and Deployment**:
-  - **Docker**: For containerization of application components.
-  - **Google Cloud VMs**: For scalable deployment of the application.
-
-### Data Pipeline Design
-1. **Data Ingestion**:
-   - Scheduled scraping of job data via Google SERP API and ingestion into Snowflake.
-   - Resumes and cover letters uploaded by users are stored in AWS S3.
-2. **Data Cleaning and Transformation**:
-   - **Job Listings**: Deduplication, completeness checks, and standardization of fields (e.g., job titles, locations).
-   - **User Data**: Ensures compatibility (e.g., PDF format) and extracts text for analysis.
-3. **Data Processing and Analysis**:
-   - **Relevance Scoring**: Compares job descriptions against resumes and cover letters using OpenAI and LangChain, generating relevance scores and improvement feedback.
-   - **SQL Query Translation**: Translates natural language job search queries into SQL for Snowflake using LangGraph.
-4. **Application Tracking**:
-   - Saves user interactions and application statuses in Snowflake.
-5. **Analytics and Visualization**:
-   - Provides descriptive insights such as success rates, application trends, and most-applied roles.
+**Security**: Features **JWT token-based authentication** for secure access.
 
 ---
 
-# Outcomes and Benefits
+### User Registration Page
+New users can:
+- Create their account by providing personal details.
+- Upload their **resume** and **cover letter** in PDF format.
+![image](https://github.com/user-attachments/assets/9b644d30-08e8-4f11-a2a7-24a091d75a02)
 
-### Outcomes
-- **Job Aggregation**: Aggregate and display job listings from multiple sources, ensuring relevance based on user queries.
-- **Profile Optimization**: Provide actionable feedback for resumes and cover letters for all user-selected jobs.
-- **User Engagement**: Enable users to save and track job applications with accurate data retention.
-- **Analytics**: Generate insights into application trends, success rates, and frequently applied roles.
-- **System Performance**:
-  - Maintain response times under 2 seconds for job searches and relevance scoring.
-  - Ensure 99% system uptime and availability.
+**Storage**:
+- Documents are securely stored in **AWS S3**.
+- User details are saved in the **Snowflake database**.
 
-### Benefits
-1. **Enhanced Job Search Experience**:
-   - Broader access to job opportunities from diverse sources.
-2. **Improved Application Success Rates**:
-   - Tailored feedback for stronger applications increases the chances of getting shortlisted.
-3. **Streamlined Application Management**:
-   - Simplifies workflows for tracking and managing job applications.
-4. **Interview Preparation Support**:
-   - Retains job details to help users prepare effectively for interviews.
-5. **Data-Driven Decision Making**:
-   - Empowers users with analytics to refine job search strategies.
-6. **User Satisfaction**:
-   - Comprehensive features create a seamless experience, boosting satisfaction and retention.
+---
+
+### Job Search Results Page
+Displays job listings retrieved from **Snowflake** based on the user's natural language query.
+![image](https://github.com/user-attachments/assets/d5e8bbfd-10d9-4607-9dd6-c46c318e391f)
+
+---
+
+### Job Details View
+A detailed view of selected jobs, including:
+- Complete job description
+- Company information
+- Application link
+- Option to **Save the Job**
+![image](https://github.com/user-attachments/assets/06dbf28c-a0ae-40c2-8f2d-bf0cf60f2bd5)
+
+---
+
+### Saved Jobs Page
+Manage all saved jobs with options to:
+- View job details
+- Generate feedback
+- Update application progress
+- **Delete a Job** if no longer needed
+![image](https://github.com/user-attachments/assets/3d87d58e-ef95-43b6-8665-0aa8c97c2b79)
+
+---
+
+### Profile Relevance Page
+- Shows AI-powered analysis comparing the user's resume and cover letter with the selected job description.
+- Provides **structured feedback** for optimization.
+![image](https://github.com/user-attachments/assets/af2911fc-5f23-4068-898d-1bcc4dab32ee)
+![image](https://github.com/user-attachments/assets/792057ce-82b4-414c-a437-f1593a386f03)
+
+---
+
+### Application Materials
+Manage and update application-related documents such as resumes and cover letters.
+![image](https://github.com/user-attachments/assets/be5c5427-9c75-4c6c-98ef-3ec0998031ce)
+
+---
+
+### User Analytics
+Visual representation of the user's job search journey, including:
+- Application statistics
+- Job search trends
+- Profile performance metrics
+![image](https://github.com/user-attachments/assets/8638c7bb-038c-4b38-a272-ddb5cd92af4f)
 
 ---
 
