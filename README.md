@@ -87,44 +87,8 @@ Our solution aims to deliver a comprehensive platform offering:
 ![image](https://github.com/user-attachments/assets/1dbf9f88-b5b9-4186-a3f6-ef7b1591d211)
 
 # Application Workflow
-graph TD
-    %% Data Flow %%
-    subgraph Data Flow
-        A[Google Jobs Scraping via Google SERP API] --> B[Preprocessing and Transformations]
-        B --> C[Airflow] --> Cd[Load Data into Snowflake Database]
-    end
 
-    %% Application Flow and Back%%
-    subgraph Application Flow
-        Login_Signup --> D[Login or Signup]
-        D -->|Signup| E[Save User Details to Snowflake Users Database, Resume and Cover Letter to S3]
-        D -->|Login| G[Authenticate with JWT Token]
-        
-        G --> H[User Logged In]
-        
-        H --> I[User Asks for Jobs in Natural Language]
-        I --> J[SQL Agent Writes SQL Query in the Backend]
-        J --> K[Retrieve Jobs Data from Snowflake Job Listings Database]
-        K --> L[Display Job Listings Data to User]
-        L --> R[Set Job Status as Applied]
-
-        L --> M[User Selects Particular Job to Save]
-        M --> N[Saves Selected Job Details in Snowflake Saved Jobs DB]
-
-        H --> OO[View Saved Jobs from Snowflake Saved Jobs DB]
-        OO --> FF[Set Job Status as Applied]
-        OO --> GG[Check Relevance with Profile and save the feedback and Job Details in Snowflake Results DB]
-
-        L --> P[Check Selected Job Relevance with Profile]
-        P --> PQ[Sends Job description Along with Resume and Cover Letter to OpenAI for Structured Feedaback]
-        PQ --> Q[Save Feedback and Job Details in Snowflake Results DB]
-
-        R --> S[Save Status in Snowflake Results DB]
-
-        H --> T[Analytics Option]
-        T --> U[Analytics for the applied jobs from Snowflake Results DB]
-    end
-
+![image](https://github.com/user-attachments/assets/dab1827c-1e6d-452d-a9e8-25b54f84bdbf)
 
 
 The project leverages a multi-layered architecture with the following technologies:
