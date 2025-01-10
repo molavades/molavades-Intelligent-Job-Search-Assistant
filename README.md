@@ -66,7 +66,7 @@ Job seekers currently face several critical challenges in their job search proce
 
 ---
 
-## Desired Outcome
+# Desired Outcome
 
 Our solution aims to deliver a comprehensive platform offering:
 
