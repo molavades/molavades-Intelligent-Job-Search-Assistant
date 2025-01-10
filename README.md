@@ -42,8 +42,6 @@ The **Intelligent Job Search Assistant** provides a comprehensive suite of featu
 ---
 # Problem Statement 
 
-## Problem Statement
-
 Job seekers currently face several critical challenges in their job search process:
 
 ### Limited Job Discovery
